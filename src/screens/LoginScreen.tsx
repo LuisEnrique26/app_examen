@@ -22,7 +22,7 @@ const LoginScreen = () => {
                 >
                     Iniciar Sesión
                 </Text>
-                { (request == false) &&
+                { (request === false) &&
                     <Text
                         style={{
                             ...styles.title,

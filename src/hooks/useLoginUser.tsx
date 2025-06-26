@@ -48,14 +48,13 @@ export const useLoginUser = () => {
             username: state.username.trim(),
             password: state.password
         }
-        console.log(dataBody);
-        
+        //console.log(dataBody);
 
         try {
             const response = await myApi.post(apiUrl,dataBody);
-            console.log(response.data);
+            //console.log(response.data);
             
-            if ( response.data !== false ) {
+            if ( response.data !== false )  {
                 signIn();
                 changeUserName( response.data.username );
                 changeAvatar( response.data.image );
