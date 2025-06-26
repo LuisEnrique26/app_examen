@@ -3,6 +3,9 @@ import { RootStackUserParams } from "../navigator/UserNavigator";
 import { useFormHook } from "../hooks/useFormData";
 import { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
+import { Text, TextInput, View } from "react-native";
+import { Button } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 interface Props extends StackScreenProps<RootStackUserParams, 'FormScreen'>{};
 
@@ -20,10 +23,50 @@ export const FormScreen = ({ navigation, route }: Props) => {
     },[]);
 
     return (
-        <ScrollView
-
-        >
-
+        <ScrollView>
+            <Text>
+                Formulario
+            </Text>
+            <View>
+                {(formData._id != '') && 
+                <Button
+                    title="Eliminar"
+                    onPress={() => {
+                        handleDelete();
+                        navigation.goBack();
+                    }}
+                />
+                }
+                <Text>
+                    User Name
+                </Text>
+                <TextInput
+                    value={formData.username}
+                    onChangeText={(text) => handleInputChange('username', text)}
+                    placeholder="Nombre de Usuario"
+                />
+                <Text>
+                    Password
+                </Text>
+                <TextInput
+                    value={formData.password}
+                    onChangeText={(text) => handleInputChange('password', text)}
+                    placeholder="Contraseña"
+                    secureTextEntry={true}
+                />
+                <TouchableOpacity
+                    onPress={() => {
+                        handleSubmit();
+                        navigation.navigate("HomeUserScreen");
+                    }}
+                >
+                    <View>
+                        <Text>
+                            Enviar
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </ScrollView>
     )
 }
